@@ -17,14 +17,18 @@ include_directories(${Boost_INCLUDE_DIRS})
 find_package(PythonLibs REQUIRED)
 
 ADD_LIBRARY(cpp-docker-isolation-provider STATIC
-        core/nginx.h
         docker-isolation-provider.cpp
 )
-
 
 # Link against Boost libraries
 TARGET_LINK_LIBRARIES(cpp-docker-isolation-provider ${Boost_LIBRARIES} ${PYTHON_LIBRARIES})
 
+target_include_directories(cpp-docker-isolation-provider PRIVATE
+        ${CMAKE_SOURCE_DIR}/core
+        ${CMAKE_SOURCE_DIR}/http
+        ${CMAKE_SOURCE_DIR}/auto_headers
+        ${CMAKE_SOURCE_DIR}/ngx_linux
+)
 
 set_target_properties(cpp-docker-isolation-provider
   PROPERTIES
