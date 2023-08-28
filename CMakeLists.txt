@@ -17,7 +17,7 @@ include_directories(${Boost_INCLUDE_DIRS})
 find_package(PythonLibs REQUIRED)
 
 ADD_LIBRARY(cpp-docker-isolation-provider STATIC
-        httplib.h
+        core/nginx.h
         docker-isolation-provider.cpp
 )
 
